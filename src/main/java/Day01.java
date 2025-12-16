@@ -35,21 +35,32 @@ public class Day01 extends Day {
         int count = 0;
         int jala = 50;
         for (String datum : data) {
-            int nucci = Integer.parseInt(datum.substring(1)) % 100;
+            int nucci = Integer.parseInt(datum.substring(1));
+            int buba = nucci / 100;
+            nucci = nucci % 100;
+
             if (datum.charAt(0) == 'R') {
                 if (jala + nucci > 99) {
                     jala = nucci - (100 - jala);
+                    count += buba;
+                    count++;
+                    if (jala == 0) count++;
                 } else {
                     jala += nucci;
+                    if (jala == 0) count++;
                 }
+
             } else {
                 if (jala - nucci < 0) {
                     jala = 100 - (nucci - jala);
+                    count += buba;
+                    count++;
+                    if (jala == 0) count++;
                 } else {
                     jala -= nucci;
+                    if (jala == 0) count++;
                 }
             }
-            if (jala == 0) count++;
         }
         return count;
     }

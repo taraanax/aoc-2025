@@ -36,29 +36,43 @@ public class Day01 extends Day {
         int jala = 50;
         for (String datum : data) {
             int nucci = Integer.parseInt(datum.substring(1));
-            int buba = nucci / 100;
-            nucci = nucci % 100;
+            int buba = nucci / 100;  // celi krogi
+            nucci = nucci % 100; // premik
 
             if (datum.charAt(0) == 'R') {
                 if (jala + nucci > 99) {
                     jala = nucci - (100 - jala);
+                    for (int i = 0; i <= nucci; i++) {
+                        //gun to my head tole mi vjutro ne bo jasn
+                        if ((jala + i) % 100 == 0) {
+                            count++;
+                        }
+                    }
                     count += buba;
-                    count++;
-                    if (jala == 0) count++;
                 } else {
                     jala += nucci;
-                    if (jala == 0) count++;
+                    for (int i = 0; i <= nucci; i++) {
+                        if ((jala + i) % 100 == 0) {
+                            count++;
+                        }
+                    }
                 }
-
             } else {
                 if (jala - nucci < 0) {
                     jala = 100 - (nucci - jala);
                     count += buba;
-                    count++;
-                    if (jala == 0) count++;
+                    for (int i = 0; i <= nucci; i++) {
+                        if ((jala - i) % 100 == 0) {
+                            count++;
+                        }
+                    }
                 } else {
                     jala -= nucci;
-                    if (jala == 0) count++;
+                    for (int i = 0; i <= nucci; i++) {
+                        if ((jala - i) % 100 == 0) {
+                            count++;
+                        }
+                    }
                 }
             }
         }
